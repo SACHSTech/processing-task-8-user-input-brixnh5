@@ -13,6 +13,11 @@ public class Sketch extends PApplet {
   int intGrassR = 0;
   int intGrassG = 150;
   int intGrassB = 0;
+  
+  boolean upPressed = false;
+  boolean downPressed = false;
+  boolean leftPressed = false;
+  boolean rightPressed = false;
 
   public void settings() {
     size(800, 800);
@@ -36,23 +41,19 @@ public class Sketch extends PApplet {
     rect(0,700,800,100);
 
     // draws and moves a circle according to user input
-    if (keyPressed){
-      if (keyCode == UP) {
-        fltCircleY--;
-      }
-  
-      else if (keyCode == DOWN) {
-        fltCircleY++;
-      }
-  
-      else if (keyCode == LEFT) {
-        fltCircleX--;
-      }
-  
-      else if (keyCode == RIGHT) {
-        fltCircleX++;
-      }
+    if (upPressed) {
+      fltCircleY--;
     }
+    if (downPressed) {
+      fltCircleY++;
+    }
+    if (leftPressed) {
+      fltCircleX--;
+    }
+    if (rightPressed) {
+      fltCircleX++;
+    }
+  
     
     // draws circles
     fill(100, 100, 100);
@@ -78,6 +79,19 @@ public class Sketch extends PApplet {
     else if(key == 'b'){
       background(0, 0, 255);
     }
+
+    if (keyCode == UP) {
+      upPressed = true;
+    }
+    else if (keyCode == DOWN) {
+      downPressed = true;
+    }
+    else if (keyCode == LEFT) {
+      leftPressed = true;
+    }
+    else if (keyCode == RIGHT) {
+      rightPressed = true;
+    }
   }
 
   public void keyReleased(){
@@ -97,6 +111,19 @@ public class Sketch extends PApplet {
         intGrassB = 0;
       }
     }
+
+    if (keyCode == UP) {
+      upPressed = false;
+    }
+    else if (keyCode == DOWN) {
+      downPressed = false;
+    }
+    else if (keyCode == LEFT) {
+      leftPressed = false;
+    }
+    else if (keyCode == RIGHT) {
+      rightPressed = false;
+    }
   }
   
   public void mouseClicked() {
@@ -109,7 +136,7 @@ public class Sketch extends PApplet {
       fill(40);
       ellipse(mouseX + 40, mouseY + 40 + i, 45, 45);
       ellipse(mouseX + 110, mouseY + 40 + i, 45, 45);
-    }
+    }  
   }
 
   public void mouseDragged(){
